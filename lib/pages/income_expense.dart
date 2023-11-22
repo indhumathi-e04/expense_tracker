@@ -19,6 +19,7 @@ class IncomeExpenseState extends State<IncomeExpense> {
       child: Scaffold(
         backgroundColor: ColorConstants.backgroundColor,
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: ColorConstants.backgroundColor,
           leading: IconButton(
             onPressed: () {

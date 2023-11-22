@@ -19,6 +19,19 @@ class _AddReNameState extends State<AddRename> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstants.backgroundColor,
+      appBar: AppBar(
+          elevation: 0,
+          backgroundColor: ColorConstants.backgroundColor,
+          leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: ColorConstants.blackColor,
+            ),
+            onPressed: () {
+              Get.to(HomePage());
+            },
+          )),
       persistentFooterButtons: [
         Container(
           alignment: Alignment.center,
