@@ -35,9 +35,10 @@ class _IncomeChartState extends State<IncomeChart> {
       box.toMap().values.forEach((element) {
         if (element['type'] == "Income") {
           incomeData.add(IncomeModel(
-              amount: element['amount'],
-              type: element['type'],
-              note: element['note']));
+            amount: element['amount'],
+            type: element['type'],
+            note: element['note'],
+          ));
         }
       });
 

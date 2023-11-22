@@ -33,6 +33,8 @@ class _ExpenseChartState extends State<ExpenseChart> {
       List<ExpenseModel> incomeData = [];
       box.toMap().values.forEach((element) {
         print(element.toString() + "  elements printed");
+        // element.forEach((k, v) => print("Key : $k, Value : $v"));
+
         totalExpenseByCategory.putIfAbsent(element['dropdownData'], () => 0);
         totalExpenseByCategory[element['dropdownData']] =
             totalExpenseByCategory[element['dropdownData']]! +

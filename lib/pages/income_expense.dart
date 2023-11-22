@@ -26,9 +26,14 @@ class IncomeExpenseState extends State<IncomeExpense> {
             },
             icon: Icon(
               Icons.arrow_back,
+              color: ColorConstants.blackColor,
             ),
           ),
-          title: Text("Transactions"),
+          title: Text(
+            "Transactions",
+            style: context.textTheme.displayLarge!
+                .copyWith(color: ColorConstants.blackColor),
+          ),
           centerTitle: true,
         ),
         body: Padding(
@@ -47,8 +52,8 @@ class IncomeExpenseState extends State<IncomeExpense> {
                 ),
                 child: TabBar(
                   indicatorPadding: EdgeInsets.only(
-                    left: -70,
-                    right: -70,
+                    left: 0,
+                    right: 0,
                   ),
                   indicator: BoxDecoration(
                     gradient: const LinearGradient(

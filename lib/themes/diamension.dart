@@ -7,6 +7,7 @@ class Diamensions {
 
   static double icon64 = screenHeight / 12.9;
   static double icon24 = screenHeight / 34.4;
+  static double icon14 = screenHeight / 59;
 
   static double height10 = screenHeight / 82.6;
   static double height20 = screenHeight / 41.3;
@@ -16,10 +17,12 @@ class Diamensions {
   static double height300 = screenHeight / 2.75;
 
   static double width8 = screenHeight / 103.25;
+  static double width12 = screenHeight / 68.8;
   static double width15 = screenHeight / 55;
   static double width60 = screenHeight / 13.7;
 
   static double font12 = screenHeight / 68.8;
+  static double font14 = screenHeight / 59;
   static double font20 = screenHeight / 41.3;
   static double font26 = screenHeight / 31.7;
 

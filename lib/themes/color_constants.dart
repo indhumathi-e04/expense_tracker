@@ -8,4 +8,6 @@ class ColorConstants {
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color blackColor = Color(0xFF282828);
   static const Color greyColor = Color(0xFF949494);
+  static const expenseTileRedColor = Color.fromARGB(15, 187, 21, 71);
+  static const incomeRileGreenColor = const Color(0xffd8fac5);
 }

@@ -1,12 +1,12 @@
 class ExpenseModel {
   double amount;
-  String type;
+  String? type;
   String? note;
   String dropdownData;
 
   ExpenseModel({
     required this.amount,
-    this.type = "income",
+    this.type,
     this.note,
     required this.dropdownData,
   });

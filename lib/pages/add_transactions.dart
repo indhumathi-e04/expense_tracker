@@ -22,8 +22,8 @@ class AddTransactionState extends State<AddTransaction> {
   String dropdownValue = "Food";
   List<String> months = [
     "Jan",
-    "Feb"
-        "Mar",
+    "Feb",
+    "Mar",
     "Apr",
     "May",
     "Jun",
@@ -32,7 +32,7 @@ class AddTransactionState extends State<AddTransaction> {
     "Sep",
     "Oct",
     "Nov",
-    "Dec"
+    "Dec",
   ];
   var items = [
     "Food",
@@ -56,17 +56,22 @@ class AddTransactionState extends State<AddTransaction> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstants.backgroundColor,
       appBar: AppBar(
         backgroundColor: ColorConstants.backgroundColor,
         leading: IconButton(
           onPressed: () {
             Get.back();
           },
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: ColorConstants.blackColor,
+          ),
         ),
         title: Text(
-          "Add Expenses",
+          "Add Transactions",
           style: context.textTheme.displayLarge!.copyWith(
+            fontSize: Diamensions.font20,
             color: ColorConstants.blackColor,
           ),
         ),
@@ -96,7 +101,7 @@ class AddTransactionState extends State<AddTransaction> {
                 horizontal: Diamensions.height30 + Diamensions.height60,
               ),
               padding: EdgeInsets.only(
-                left: Diamensions.height70,
+                left: Diamensions.height60,
                 right: Diamensions.height30,
               ),
               decoration: BoxDecoration(
@@ -107,9 +112,9 @@ class AddTransactionState extends State<AddTransaction> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      "\$",
+                      "\₹",
                       style: TextStyle(
-                        fontSize: Diamensions.height20 + 5,
+                        fontSize: Diamensions.font20,
                         color: ColorConstants.greyColor,
                       ),
                     ),
@@ -122,8 +127,8 @@ class AddTransactionState extends State<AddTransaction> {
                           border: InputBorder.none,
                         ),
                         style: TextStyle(
-                          fontSize: Diamensions.font26,
-                        ),
+                            fontSize: Diamensions.font20,
+                            color: ColorConstants.greyColor),
                         onChanged: (val) {
                           try {
                             amount = int.parse(val);
@@ -152,10 +157,10 @@ class AddTransactionState extends State<AddTransaction> {
               child: Row(children: [
                 Container(
                   padding: EdgeInsets.only(
-                    left: Diamensions.width15,
-                    right: Diamensions.width15,
-                    top: Diamensions.width15,
-                    bottom: Diamensions.width15,
+                    left: Diamensions.width12,
+                    right: Diamensions.width12,
+                    top: Diamensions.width12,
+                    bottom: Diamensions.width12,
                   ),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
@@ -173,7 +178,7 @@ class AddTransactionState extends State<AddTransaction> {
                   ),
                   child: Icon(
                     Icons.description,
-                    size: Diamensions.width15,
+                    size: Diamensions.width12,
                     color: ColorConstants.whiteColor,
                   ),
                 ),
@@ -182,8 +187,11 @@ class AddTransactionState extends State<AddTransaction> {
                 ),
                 Expanded(
                   child: TextField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: "Note",
+                      hintStyle: context.textTheme.displaySmall!.copyWith(
+                        color: ColorConstants.greyColor,
+                      ),
                       border: InputBorder.none,
                     ),
                     style: TextStyle(
@@ -215,10 +223,10 @@ class AddTransactionState extends State<AddTransaction> {
                     Diamensions.radius25,
                   ),
                 ),
-                padding: EdgeInsets.all(Diamensions.font12),
+                padding: EdgeInsets.all(Diamensions.width8),
                 child: Icon(
                   Icons.moving_sharp,
-                  size: Diamensions.font26,
+                  size: Diamensions.width15,
                   color: ColorConstants.whiteColor,
                 ),
               ),
@@ -226,16 +234,15 @@ class AddTransactionState extends State<AddTransaction> {
                 width: Diamensions.height10 + 2,
               ),
               ChoiceChip(
-                label: Text(
-                  "Income",
-                  style: TextStyle(
-                    fontSize: Diamensions.font20 - 2,
-                    fontWeight: FontWeight.bold,
-                    color: types == "Income"
-                        ? ColorConstants.whiteColor
-                        : ColorConstants.blackColor,
-                  ),
-                ),
+                selectedColor: ColorConstants.purple,
+                label: Text("Income",
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      fontSize: Diamensions.font14,
+                      //fontWeight: FontWeight.bold,
+                      color: types == "Income"
+                          ? ColorConstants.whiteColor
+                          : ColorConstants.blackColor,
+                    )),
                 selected: types == "Income" ? true : false,
                 onSelected: (val) {
                   if (val) {
@@ -253,16 +260,14 @@ class AddTransactionState extends State<AddTransaction> {
               ),
               ChoiceChip(
                 selectedColor: ColorConstants.purple,
-                label: Text(
-                  "Expense",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    color: types == "Expense"
-                        ? ColorConstants.whiteColor
-                        : ColorConstants.blackColor,
-                  ),
-                ),
+                label: Text("Expense",
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      fontSize: Diamensions.font14,
+                      //fontWeight: FontWeight.bold,
+                      color: types == "Expense"
+                          ? ColorConstants.whiteColor
+                          : ColorConstants.blackColor,
+                    )),
                 selected: types == "Expense" ? true : false,
                 onSelected: (val) {
                   if (val) {
@@ -304,10 +309,10 @@ class AddTransactionState extends State<AddTransaction> {
                           Diamensions.radius25,
                         ),
                       ),
-                      padding: EdgeInsets.all(Diamensions.height10 + 2),
+                      padding: EdgeInsets.all(Diamensions.width12),
                       child: Icon(
                         Icons.date_range,
-                        size: Diamensions.icon24,
+                        size: Diamensions.icon14,
                         color: ColorConstants.whiteColor,
                       ),
                     ),
@@ -317,8 +322,8 @@ class AddTransactionState extends State<AddTransaction> {
                     Text(
                       "${sdate.day} ${months[sdate.month - 1]}",
                       style: context.textTheme.bodyMedium!.copyWith(
-                        fontSize: Diamensions.font20 - 3,
-                        color: ColorConstants.greyColor,
+                        fontSize: Diamensions.font12,
+                        color: ColorConstants.blackColor,
                       ),
                     ),
                   ],
@@ -331,17 +336,25 @@ class AddTransactionState extends State<AddTransaction> {
             Visibility(
               visible: types != "Income",
               child: DropdownButton(
+                underline: null,
                 menuMaxHeight: 130,
                 alignment: Alignment.topCenter,
                 padding: const EdgeInsets.only(left: 12),
                 borderRadius: BorderRadius.circular(30),
                 elevation: 0,
                 value: dropdownValue,
-                icon: const Icon(Icons.keyboard_arrow_down),
+                icon: const Icon(
+                  Icons.keyboard_arrow_down,
+                  color: ColorConstants.greyColor,
+                ),
                 items: items.map((String items) {
                   return DropdownMenuItem(
                     value: items,
-                    child: Text(items),
+                    child: Text(
+                      items,
+                      style: context.textTheme.bodyMedium!
+                          .copyWith(color: ColorConstants.blackColor),
+                    ),
                   );
                 }).toList(),
                 onChanged: (String? newValue) {

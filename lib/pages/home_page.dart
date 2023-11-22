@@ -98,6 +98,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: ColorConstants.backgroundColor,
         persistentFooterButtons: [
           Container(
             alignment: Alignment.center,
@@ -131,8 +132,9 @@ class _HomePageState extends State<HomePage> {
           child: Container(
             width: Diamensions.height60,
             height: Diamensions.height60,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
+            decoration: BoxDecoration(
+              // shape: BoxShape.circle,
+              borderRadius: BorderRadius.circular(Diamensions.radius12),
               gradient: LinearGradient(
                 colors: [
                   ColorConstants.blue,
@@ -173,71 +175,39 @@ class _HomePageState extends State<HomePage> {
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: ColorConstants.orange,
-                                        borderRadius: BorderRadius.circular(
-                                          Diamensions.radius25,
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.all(Diamensions.width8),
-                                        child: Icon(
-                                          Icons.person,
-                                          size: Diamensions.icon24,
-                                        ),
+                                    Text(
+                                      "Welcome!",
+                                      style: context.textTheme.displayLarge!
+                                          .copyWith(
+                                        fontSize: Diamensions.font14,
+                                        color: ColorConstants.greyColor,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: Diamensions.width8,
+                                    Text(
+                                      "${preferences.getString('name')}",
+                                      style: context.textTheme.displayLarge!
+                                          .copyWith(
+                                        fontSize: Diamensions.font20,
+                                      ),
                                     ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Welcome!",
-                                          style: context.textTheme.displayLarge!
-                                              .copyWith(
-                                            fontSize: Diamensions.font12,
-                                            color: ColorConstants.greyColor,
-                                          ),
-                                        ),
-                                        Text(
-                                          "${preferences.getString('name')}",
-                                          style: context.textTheme.displayLarge!
-                                              .copyWith(
-                                            fontSize: Diamensions.font20,
-                                          ),
-                                        ),
-                                      ],
-                                    )
                                   ],
                                 ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        Diamensions.radius12),
-                                    color: ColorConstants.whiteColor
-                                        .withOpacity(0.5),
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.settings,
+                                    size: Diamensions.icon24,
+                                    color: ColorConstants.blackColor,
                                   ),
-                                  child: IconButton(
-                                    icon: Icon(
-                                      Icons.settings,
-                                      size: Diamensions.icon24,
-                                      color: ColorConstants.greyColor,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (context) => AddRename(),
-                                        ),
-                                      );
-                                    },
-                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) => AddRename(),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ]),
                         ),
@@ -282,8 +252,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   totalBalance <= 0
-                                      ? "0 \$"
-                                      : "$totalBalance \$",
+                                      ? "0 \₹"
+                                      : "$totalBalance \₹",
                                   textAlign: TextAlign.center,
                                   style: context.textTheme.bodyLarge!.copyWith(
                                     color: ColorConstants.whiteColor,
@@ -319,9 +289,9 @@ class _HomePageState extends State<HomePage> {
                               child: Text(
                                 AppConstants.recentTransactions,
                                 style: context.textTheme.displayLarge!.copyWith(
-                                  fontSize: Diamensions.font26,
+                                  fontSize: Diamensions.font14,
                                   color: ColorConstants.blackColor,
-                                  fontWeight: FontWeight.bold,
+                                  //fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -331,7 +301,11 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () {
                                   Get.to(() => IncomeExpense());
                                 },
-                                child: Text("View all"),
+                                child: Text(
+                                  "View all",
+                                  style: TextStyle(
+                                      color: ColorConstants.blackColor),
+                                ),
                               ),
                             )
                           ],
@@ -405,7 +379,7 @@ class _HomePageState extends State<HomePage> {
                                       "Welcome",
                                       style: context.textTheme.displayLarge!
                                           .copyWith(
-                                        fontSize: Diamensions.font12,
+                                        fontSize: Diamensions.font14,
                                         color: ColorConstants.greyColor,
                                       ),
                                     ),
@@ -485,7 +459,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Text(
-              "$value \$",
+              "$value \₹",
               style: TextStyle(
                 fontSize: Diamensions.font20,
                 fontWeight: FontWeight.w700,
@@ -528,7 +502,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Text(
-              "$value \$",
+              "$value \₹",
               style: TextStyle(
                 fontSize: Diamensions.font20,
                 fontWeight: FontWeight.w700,
@@ -569,7 +543,7 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.all(Diamensions.width8),
         padding: EdgeInsets.all(Diamensions.height20),
         decoration: BoxDecoration(
-          color: const Color(0xfffacc5),
+          color: ColorConstants.expenseTileRedColor,
           borderRadius: BorderRadius.circular(Diamensions.radius25),
         ),
         child: Row(
@@ -582,7 +556,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Icon(
                         Icons.arrow_circle_down_outlined,
-                        size: Diamensions.icon24,
+                        size: Diamensions.icon14,
                         color: Colors.red[700],
                       ),
                       SizedBox(
@@ -591,7 +565,8 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         "Expense",
                         style: TextStyle(
-                          fontSize: Diamensions.font20,
+                          color: ColorConstants.blackColor,
+                          fontSize: Diamensions.font14,
                         ),
                       ),
                     ],
@@ -605,16 +580,17 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    " - $value \$",
+                    " - $value \₹",
                     style: TextStyle(
-                      fontSize: Diamensions.font20,
+                      color: ColorConstants.blackColor,
+                      fontSize: Diamensions.font14,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Text(
                     note,
                     style: TextStyle(
-                      color: Colors.grey[800],
+                      color: ColorConstants.blackColor,
                       fontSize: Diamensions.font12,
                       fontWeight: FontWeight.w700,
                     ),
@@ -654,7 +630,7 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.all(Diamensions.width8),
         padding: EdgeInsets.all(Diamensions.height20),
         decoration: BoxDecoration(
-          color: const Color(0xffd8fac5),
+          color: ColorConstants.incomeRileGreenColor,
           borderRadius: BorderRadius.circular(Diamensions.radius25),
         ),
         child: Row(
@@ -667,7 +643,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Icon(
                         Icons.arrow_circle_down_outlined,
-                        size: Diamensions.icon24,
+                        size: Diamensions.icon14,
                         color: Colors.green[700],
                       ),
                       SizedBox(
@@ -676,7 +652,8 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         "Income",
                         style: TextStyle(
-                          fontSize: Diamensions.font20,
+                          color: ColorConstants.blackColor,
+                          fontSize: Diamensions.font14,
                         ),
                       ),
                     ],
@@ -690,16 +667,17 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    " - $value \$",
+                    " + $value \₹",
                     style: TextStyle(
-                      fontSize: Diamensions.font20,
+                      color: ColorConstants.blackColor,
+                      fontSize: Diamensions.font14,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Text(
                     note,
                     style: TextStyle(
-                      color: Colors.grey[800],
+                      color: ColorConstants.blackColor,
                       fontSize: Diamensions.font12,
                       fontWeight: FontWeight.w700,
                     ),
